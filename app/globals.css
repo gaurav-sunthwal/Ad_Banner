@@ -1,3 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base  !important;
+@tailwind components !important;
+@tailwind utilities  !important;
+
+.banner {
+  position: relative  !important;
+  display: flex   !important;
+  justify-content: center   !important;
+  align-items: center   !important;
+  padding: 20px   !important;
+  color: white !important;
+  border-radius: 8px  !important;
+  overflow: hidden  !important;
+}
+
+.banner img {
+  width: 100%   !important;
+  height: auto  !important;
+  object-fit: cover   !important;
+  border-radius: 8px  !important;
+  background-repeat: no-repeat !important;
+}
+
+.banner1 {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  /* Add specific styles for banner 1 */
+}
+
+.banner2 {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  /* Add specific styles for banner 2 */
+}
+
+.banner3 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  /* Add specific styles for banner 3 */
+}

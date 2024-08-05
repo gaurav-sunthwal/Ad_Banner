@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Ad Banner 1",
+    "description": "Description for Ad Banner 1",
+    "cta": "Learn More",
+    "image": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/5/square.png",
+    "background": "#f3f4f6",
+    "style": "banner1"
+  },
+  {
+    "id": 2,
+    "title": "Ad Banner 2",
+    "description": "Description for Ad Banner 2",
+    "cta": "Shop Now",
+    "image": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/9/square.png",
+    "background": "#e5e7eb",
+    "style": "banner2"
+  },
+  {
+    "id": 3,
+    "title": "Ad Banner 3",
+    "description": "Description for Ad Banner 3",
+    "cta": "Buy Now",
+    "image": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/1/square.png",
+    "background": "#d1d5db",
+    "style": "banner3"
+  }
+]

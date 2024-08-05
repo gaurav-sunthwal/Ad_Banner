@@ -1,21 +1,39 @@
-import { Box, Image, useDisclosure } from "@chakra-ui/react";
-import { MdEdit } from "react-icons/md";
-import EditBannerTemplateBs from "./Component/EditBannerTemplateBs";
-export default function Home() {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
+"use client"
+
+import React, { useState } from 'react';
+import { Box, SimpleGrid } from '@chakra-ui/react';
+import bannersData from "./Data/bannersData.json"
+import EditBannerTemplateBs from './Component/EditBannerTemplateBs';
+import AdBanner from './Component/AdBanner';
+const Home = () => {
+  const [banners, setBanners] = useState(bannersData);
+  const [editingBanner, setEditingBanner] = useState(null);
+
+  const handleEdit = (id: number) => {
+    setEditingBanner(banners.find(banner => banner.id === id));
+  };
+
+  const handleSave = (updatedBanner: any) => {
+    setBanners(banners.map(banner => (banner.id === updatedBanner.id ? updatedBanner : banner)));
+    setEditingBanner(null);
+  };
+
   return (
-    <Box position="relative" width="100%" height="100vh">
-      <Image
-        width="100%"
-        height="100%"
-        objectFit="cover"
-        alt="background"
-        src="https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/9/square.png"
-      />
-      
-      <Box >
-        <EditBannerTemplateBs />
-      </Box>
+    <Box p={4}>
+      <SimpleGrid columns={[1, 2, 3]} spacing={4}>
+        {banners.map(banner => (
+          <AdBanner key={banner.id} banner={banner} onEdit={handleEdit} />
+        ))}
+      </SimpleGrid>
+      {editingBanner && (
+        <EditBannerTemplateBs
+          banner={editingBanner}
+          onSave={handleSave}
+          onClose={() => setEditingBanner(null)}
+        />
+      )}
     </Box>
   );
-}
+};
+
+export default Home;

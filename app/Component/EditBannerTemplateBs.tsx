@@ -1,58 +1,46 @@
 "use client"
-//@ts-nocheck
+import React, { useState } from 'react';
+import { Box, Button, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import { IoMdCloudUpload } from 'react-icons/io';
 
-import {
-    Box,
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
-import React from "react";
-import { MdEdit } from "react-icons/md";
+const EditBannerTemplateBs = ({ banner, onSave, onClose }: any) => {
+  const [formData, setFormData] = useState(banner);
+  const { isOpen, onOpen, onClose: onModalClose } = useDisclosure();
 
-export default function EditBannerTemplateBs() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    return (
-    <div>
-      <Box
-        position="absolute"
-        top={4}
-        right={4}
-        backgroundColor="#171717"
-        borderRadius="50%"
-        p={2}
-        color="white"
-        fontSize="24px"
-        zIndex={1}
-        _hover={{ bg: "#333" }}
-        onClick={onOpen}
-      >
-        <MdEdit />
-      </Box>
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edit Banner</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Done
-            </Button>
-            <Button variant="ghost">Downlode</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </div>
+  const handleSave = () => {
+    onSave(formData);
+    onModalClose();
+  };
+
+  return (
+    <Modal isOpen={isOpen || true} onClose={() => { onModalClose(); onClose(); }}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Edit Banner</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <FormLabel>Title</FormLabel>
+          <Input name="title" value={formData.title} onChange={handleChange} />
+          <FormLabel>Description</FormLabel>
+          <Input name="description" value={formData.description} onChange={handleChange} />
+          <FormLabel>CTA</FormLabel>
+          <Input name="cta" value={formData.cta} onChange={handleChange} />
+          <FormLabel>Background Image</FormLabel>
+          <Input name="image" value={formData.image} onChange={handleChange} />
+          <FormLabel>Style</FormLabel>
+          <Input name="style" value={formData.style} onChange={handleChange} />
+        </ModalBody>
+        <ModalFooter>
+          <Button colorScheme="blue" onClick={handleSave}>Save</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
-}
+};
+
+export default EditBannerTemplateBs;
