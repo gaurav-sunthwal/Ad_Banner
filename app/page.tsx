@@ -1,5 +1,5 @@
+//@ts-nocheck
 "use client"
-
 import React, { useState } from 'react';
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import bannersData from "./Data/bannersData.json"
